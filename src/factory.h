@@ -3,10 +3,8 @@
 #include "nlohmann.h"
 
 class JsonFactory {
-public:
-    static std::unique_ptr<IJson> createObject() {
-        return std::make_unique<NlohmannJson>();
-    }
+  public:
+    static std::unique_ptr<IJson> createObject() { return std::make_unique<NlohmannJson>(); }
 
     static std::unique_ptr<IJson> createArray() {
         auto json = std::make_unique<NlohmannJson>();

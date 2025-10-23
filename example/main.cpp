@@ -1,9 +1,12 @@
-#include "factory.h"
 #include <iostream>
+#include <string>
+
+#include "factory.h"
 
 int main() {
     auto json = JsonFactory::createObject();
     json->set("name", "John");
+    json->set("family", std::string("Johniii"));
     json->set("age", 30);
     json->set("is_admin", true);
 
@@ -14,8 +17,13 @@ int main() {
 
     json->set("skills", std::move(skills));
 
-    std::cout << json->stringify(true) << std::endl;
+    std::string jsonString = json->stringify(true);
+    std::cout << jsonString << std::endl;
 
+    auto jsonObject = json->parse(jsonString);
+
+    std::cout << "name: " << jsonObject->getString("name")
+              << " age:" << jsonObject->getNumber("age") << std::endl;
 
     return 0;
 }
